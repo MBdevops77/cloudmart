@@ -7,6 +7,7 @@ RUN npm run build
 
 FROM node:16-alpine
 WORKDIR /app
+COPY --from=build /app/package*.json ./
 RUN npm install -g serve
 COPY --from=build /app/dist /app
 ENV PORT=5001
